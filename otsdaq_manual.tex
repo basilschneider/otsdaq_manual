@@ -1,0 +1,88 @@
+\documentclass[11pt,a4paper,twoside]{article}
+
+\usepackage{vmargin} %%% To proper define margins for a4paper
+\usepackage[nottoc]{tocbibind} %%% Put list of tables/figures and bibliography in table of contents, but not table of contents itself (nottoc)
+\usepackage[font=normalsize,labelfont=bf,width=14cm]{caption} %%% Nicer captions
+\usepackage{subcaption} %%% for subfigures, replaces obsolete subfigure package
+\usepackage{graphicx} %%% includegraphics
+\usepackage{hyperref} %%% for URL's
+\usepackage{rotating} %%% for sidewaysfigures
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{fixltx2e} %%% for textsubscript
+\usepackage{xspace} %%% for xspace command
+\usepackage{siunitx} %%% for comma seperators in large numbers
+\usepackage{mathrsfs} %%% for the curly luminosity L
+\usepackage{gensymb} %%% for the \degree symbol
+\usepackage{units} %%% for nice frac's, i.e. \nicefrac
+\usepackage[titletoc,title]{appendix} %%% for appendices environment (to control appendices titles)
+\usepackage{fancyhdr} %%% for placement of page numbers
+
+\include{texFiles/customdefs} % Put new commands just for this note in here
+%\bibliographystyle{texFiles/atlasBibStyleWoTitle}
+\bibliographystyle{texFiles/atlasBibStyleWithTitle}
+
+\def\title{\otsdaq manual}
+
+%%% Set PDF metadata
+\hypersetup{linktocpage, colorlinks, linkcolor=black, urlcolor=black, citecolor=black, pdfpagemode=UseOutlines, pdftitle={\title}, pdfauthor={B. Schneider}}
+
+%%% Automatically set the position specifier for all tables and all figures as htpb
+\makeatletter
+\renewcommand\fps@table{htbp}
+\renewcommand\fps@figure{htbp}
+\makeatother
+
+%%% Define group separator for large numbers (package siunitx)
+\sisetup{
+  group-digits=true,
+  group-separator={\,},
+}
+
+%%% Redefine format used for \url{}
+\renewcommand\UrlFont{\color{black}\ttfamily}
+
+\begin{document}
+
+\pagestyle{empty} %%% no numbering
+
+\include{texFiles/title}
+\clearpage
+
+\tableofcontents
+\clearpage
+\pagestyle{fancy}
+\fancyhead{} %%% clear all header fields
+\fancyfoot{} %%% clear all footer fields
+\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+%\setcounter{secnumdepth}{-1}
+\setcounter{secnumdepth}{3}
+
+\include{texFiles/introduction}
+
+\clearpage
+\include{texFiles/installation}
+
+%\setcounter{secnumdepth}{-1}
+%\clearpage
+%\include{texFiles/conclusions}
+%\setcounter{secnumdepth}{3}
+
+%\begin{appendices}
+%  \clearpage
+%  \include{texFiles/appendix-abc}
+%\end{appendices}
+
+%\listoftables
+\clearpage
+%\listoffigures
+\clearpage
+\bibliography{texFiles/bibliography}
+
+\end{document}
